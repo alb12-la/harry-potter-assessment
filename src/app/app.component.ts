@@ -13,7 +13,7 @@ export interface QuizQuestion {
   options: QuizOptions[];
 }
 
-const DELAY_BETWEEN_RESULT = 3000;
+const RESULT_MESSAGE_DELAY = 3000;
 
 @Component({
   selector: 'app-root',
@@ -116,16 +116,13 @@ export class AppComponent implements OnInit {
 
     // Determine if answer was correct
     if (selectedAnswer === question.answerKey) {
-      console.log('CORRECT');
       result = '#correct-answer';
       this.score = this.score + 1;
     } else {
-      console.log('WRONGANSWER');
       result = '#incorrect-answer';
     }
 
     // Display result
-    console.log('DISPLAYING RESULT', result);
     this.rotateEnterFromBottom(result);
 
     // Wait 3 seconds
@@ -134,25 +131,23 @@ export class AppComponent implements OnInit {
       // Dismiss result
       this.rotateExitToTop(result);
 
-      // Bring in next question
-      console.log('questionLength', this.questions.length, '> next index', nextIndex);
 
       // If more questions remain
       if (this.questions.length > nextIndex) {
         // Bring in next question
-        console.log('Bring in question', `#question-${nextIndex}`);
         this.bringToCenter(`#question-${nextIndex}`);
       } else {
         // Display end screen
-        console.log('NO more questions');
         this.bringToCenter('#ending-screen');
+
+        // Display end messages if answers were ALL correct, or ALL wrong
         if (this.score === 0) {
           this.summonEndMessage('#snape');
         } else if (this.score === this.questions.length) {
           this.summonEndMessage('#the-gang');
         }
       }
-    }, DELAY_BETWEEN_RESULT);
+    }, RESULT_MESSAGE_DELAY);
   }
 
   rotateExitToTop(elementId: string): void {
