@@ -13,7 +13,7 @@ export interface QuizQuestion {
   options: QuizOptions[];
 }
 
-const DELAY_BETWEEN_RESULT = 1000;
+const DELAY_BETWEEN_RESULT = 3000;
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ const DELAY_BETWEEN_RESULT = 1000;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
+  score = 0;
   questions: QuizQuestion[] = [
     {
       questionLabel: 'What spell creates light at the end of the wand?',
@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
   }
 
   reinitialize() {
+    this.score = 0;
     this.exitTop('#ending-screen');
     this.bringToCenter('#starting-screen');
   }
@@ -90,6 +91,7 @@ export class AppComponent implements OnInit {
     if (selectedAnswer === question.answerKey) {
       console.log('CORRECT');
       result = '#correct-answer';
+      this.score = this.score + 1;
     } else {
       console.log('WRONGANSWER');
       result = '#incorrect-answer';
