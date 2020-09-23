@@ -89,8 +89,13 @@ export class AppComponent implements OnInit {
 
   reinitialize() {
     if (this.score === 0) {
-      this.dismissSnape();
+      this.dismissEndMessage('#snape');
     }
+
+    if (this.score === this.questions.length) {
+      this.dismissEndMessage('#the-gang');
+    }
+
     this.score = 0;
     this.exitTop('#ending-screen');
     this.bringToCenter('#starting-screen');
@@ -142,7 +147,9 @@ export class AppComponent implements OnInit {
         console.log('NO more questions');
         this.bringToCenter('#ending-screen');
         if (this.score === 0) {
-          this.summonSnape();
+          this.summonEndMessage('#snape');
+        } else if (this.score === this.questions.length) {
+          this.summonEndMessage('#the-gang');
         }
       }
     }, DELAY_BETWEEN_RESULT);
@@ -210,7 +217,7 @@ export class AppComponent implements OnInit {
     };
 
     const toPosition = {
-      top: '40%',
+      top: '43%',
       duration: 1,
       opacity: 1
     };
@@ -218,7 +225,7 @@ export class AppComponent implements OnInit {
     this.gsapService.fromTo(elementId, fromPosition, toPosition);
   }
 
-  summonSnape() {
+  summonEndMessage(elementId: string) {
     const fromPosition = {
       bottom: '-1000px',
       duration: 3
@@ -228,10 +235,10 @@ export class AppComponent implements OnInit {
       bottom: '0px',
       duration: 3
     };
-    this.gsapService.fromTo('#snape', fromPosition, toPosition);
+    this.gsapService.fromTo(elementId, fromPosition, toPosition);
   }
 
-  dismissSnape() {
+  dismissEndMessage(elementId: string) {
     const fromPosition = {
       bottom: '0px',
       duration: 3
@@ -242,7 +249,7 @@ export class AppComponent implements OnInit {
       duration: 2
     };
 
-    this.gsapService.fromTo('#snape', fromPosition, toPosition);
+    this.gsapService.fromTo(elementId, fromPosition, toPosition);
   }
 
 }

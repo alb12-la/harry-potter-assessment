@@ -22,7 +22,7 @@
         </div>
         <ul class="options p-0 m-0">
           <li *ngFor="let option of question.options" class="my-2">
-            <div class="btn btn-primary" (click)="answerQuestion(option.optionKey,question, i)">{{option.optionLabel}}
+            <div class="btn btn-primary" (click)="answerQuestion(option.optionKey,question, i)">{{option.optionKey | titlecase}}. {{option.optionLabel}}
             </div>
           </li>
         </ul>
@@ -52,8 +52,12 @@
     </div>
   </div>
 
-  <div id="snape">
+  <div id="snape" class="end-message">
     <img src="../assets/images/snape.png">
+  </div>
+
+  <div id="the-gang" class="end-message">
+    <img src="../assets/images/thegang.png">
   </div>
 
 </div>

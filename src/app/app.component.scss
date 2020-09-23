@@ -3,7 +3,7 @@
     font-size: 2em;
     overflow: hidden;
     max-height: 100vh;
-    background-image: url('../assets/images/dining-hall-2.png');
+    background-image: url('../assets/images/dining-hall-3.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -38,7 +38,7 @@ ul {
     font-size: 2em;
 }
 
-#snape {
+.end-message {
     position: absolute;
     bottom: -1000px;
     right: 0px;
@@ -46,4 +46,9 @@ ul {
     img {
         height: 7em;
     }
+}
+
+#the-gang.end-message{
+    left: 0;
+    right: auto;
 }
