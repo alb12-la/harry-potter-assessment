@@ -1,12 +1,49 @@
-<div class="body-container">
-  <div class="container">
-    <h1 class="project-title">Harry Potter Quiz</h1>
-    <p>So you think you are a true Harry Potter Fan?</p>
+<div class="app-container" scrolling="no">
 
-    <div class="btn btn-primary">
-      Start
+  <div id="starting-screen" class="container panel-container">
+    <div class="panel">
+      <h1 class="project-title">Harry Potter Quiz</h1>
+      <p>So you think you are a true Harry Potter Fan?</p>
+
+      <div (click)="this.startQuiz()" class="btn btn-primary">
+        Start
+      </div>
     </div>
   </div>
 
+  <!-- TODO: Split this into a separate functional component-->
+  <ng-container *ngFor="let question of questions; let i = index">
+    <div class="container">
+      <div [id]=" 'question-' + i " class="question-panel">
+        <div class="question">
+          {{question.questionLabel}}
+        </div>
+        <ul class="options p-0 m-0">
+          <li *ngFor="let option of question.options" class="my-2">
+            <div class="btn btn-primary" (click)="answerQuestion(option.optionKey,question, i)">{{option.optionLabel}}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
 
+  <div id="incorrect-answer" class="question-panel text-danger question-result container">
+    Sorry, that's not quite right
+  </div>
+
+  <div id="correct-answer" class="question-panel text-success question-result container">
+    Good job! 
+  </div>
+
+
+  <div id="ending-screen" class="question-panel text-danger question-result">
+    <div class="container">
+      Your score is 3/3
+
+      <div class="btn btn-primary">
+        Try again?
+      </div>
+    </div>
+  </div>
 </div>

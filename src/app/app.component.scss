@@ -1,0 +1,35 @@
+
+.app-container {
+    overflow: hidden;
+    max-height: 100vh;
+}
+
+.panel-container {
+    height: 100vh;
+}
+
+// Question Panel at a hidden state
+.question-panel {
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+}
+
+.panel {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.question-result {
+    font-size: 2em;
+}
