@@ -1,5 +1,6 @@
 <div class="app-container" scrolling="no">
 
+  <!-- STARTING SCREEN-->
   <div id="starting-screen" class="container panel-container">
     <div class="panel">
       <h1 class="project-title">Harry Potter Quiz</h1>
@@ -11,6 +12,7 @@
     </div>
   </div>
 
+  <!-- QUESTIONS -->
   <!-- TODO: Split this into a separate functional component-->
   <ng-container *ngFor="let question of questions; let i = index">
     <div class="container">
@@ -35,16 +37,19 @@
 
   <!-- CORRECT ANSWER -->
   <div id="correct-answer" class="question-panel text-success question-result container">
-    Good job! 
+    Good job!
   </div>
 
   <!-- END SCREEN -->
-  <div id="ending-screen" class="question-panel text-danger question-result">
+  <div id="ending-screen" class="question-panel">
     <div class="container">
-      Your score is 3/3
-      <div class="btn btn-primary">
+      <p>
+        Your score is 3/3
+      </p>
+      <div class="btn btn-primary" (click)="reinitialize()">
         Try again?
       </div>
     </div>
   </div>
+
 </div>

@@ -68,6 +68,11 @@ export class AppComponent implements OnInit {
     window.addEventListener('scroll', () => { window.scrollTo(0, 0); });
   }
 
+  reinitialize() {
+    this.exitTop('#ending-screen');
+    this.bringToCenter('#starting-screen');
+  }
+
   startQuiz() {
     this.exitTop('#starting-screen');
     this.bringToCenter('#question-0');
@@ -91,13 +96,14 @@ export class AppComponent implements OnInit {
     }
 
     // Display result
-    this.bringToCenterSpecial(result);
+    console.log('DISPLAYING RESULT', result);
+    this.rotateEnterFromBottom(result);
 
     // Wait 3 seconds
     setTimeout(() => {
 
       // Dismiss result
-      this.exitTopSpecial(result);
+      this.rotateExitToTop(result);
 
       // Bring in next question
       console.log('questionLength', this.questions.length, '> next index', nextIndex);
@@ -115,10 +121,7 @@ export class AppComponent implements OnInit {
     }, DELAY_BETWEEN_RESULT);
   }
 
-
-
-
-  exitTopSpecial(elementId) {
+  rotateExitToTop(elementId: string): void {
     const moveUp = {
       y: -1000,
       rotate: 720,
@@ -135,6 +138,26 @@ export class AppComponent implements OnInit {
     this.gsapService.to(elementId, fadeout);
   }
 
+  rotateEnterFromBottom(elementId: string): void {
+    const fromPosition = {
+      y: 0,
+      top: '150%',
+      rotate: 0,
+      duration: 1,
+      ease: 'power1.out',
+      opacity: 1,
+    };
+
+    const toPosition = {
+      top: '40%',
+      rotate: 360,
+      duration: 1,
+      ease: 'power1.out',
+      opacity: 1,
+    };
+    this.gsapService.fromTo(elementId, fromPosition, toPosition);
+  }
+
   exitTop(elementId: string) {
     const moveUp = {
       y: -1000,
@@ -149,19 +172,6 @@ export class AppComponent implements OnInit {
     this.gsapService.to(elementId, moveUp);
     this.gsapService.to(elementId, fadeout);
   }
-
-
-  bringToCenterSpecial(elementId) {
-    const moveToCenter = {
-      top: '40%',
-      rotate: 360,
-      duration: 1,
-      ease: 'power1.out',
-    };
-    // TODO Figure out how to call different durations in one call and combine these
-    this.gsapService.to(elementId, moveToCenter);
-  }
-
 
   bringToCenter(elementId: string) {
     const moveToCenter = {
