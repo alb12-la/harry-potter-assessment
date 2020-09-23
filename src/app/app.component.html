@@ -16,7 +16,7 @@
   <!-- TODO: Split this into a separate functional component-->
   <ng-container *ngFor="let question of questions; let i = index">
     <div class="container">
-      <div [id]=" 'question-' + i " class="question-panel">
+      <div [id]=" 'question-' + i " class="initially-hidden">
         <div class="question">
           {{question.questionLabel}}
         </div>
@@ -31,17 +31,17 @@
   </ng-container>
 
   <!-- WRONG ANSWER -->
-  <div id="incorrect-answer" class="question-panel text-danger question-result container">
+  <div id="incorrect-answer" class="initially-hidden text-danger question-result container">
     Sorry, that's not quite right
   </div>
 
   <!-- CORRECT ANSWER -->
-  <div id="correct-answer" class="question-panel text-success question-result container">
+  <div id="correct-answer" class="initially-hidden text-success question-result container">
     Good job!
   </div>
 
   <!-- END SCREEN -->
-  <div id="ending-screen" class="question-panel">
+  <div id="ending-screen" class="initially-hidden">
     <div class="container">
       <p>
         Your score is {{this.score}}/{{this.questions.length}}
