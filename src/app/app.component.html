@@ -3,8 +3,8 @@
   <!-- STARTING SCREEN-->
   <div id="starting-screen" class="container panel-container">
     <div class="panel">
-      <h1 class="project-title">Harry Potter Quiz</h1>
-      <p>So you think you are a true Harry Potter Fan?</p>
+      <h1 class="project-title text-nowrap">Harry Potter Quiz</h1>
+      <p>So you think you're a true Harry Potter Fan?</p>
 
       <div (click)="this.startQuiz()" class="btn btn-primary">
         Start
@@ -13,7 +13,7 @@
   </div>
 
   <!-- QUESTIONS -->
-  <!-- TODO: Split this into a separate functional component-->
+  <!-- POSSIBLE FUTURE TODO: Split this into a separate component-->
   <ng-container *ngFor="let question of questions; let i = index">
     <div class="container">
       <div [id]=" 'question-' + i " class="initially-hidden">

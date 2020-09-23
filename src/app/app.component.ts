@@ -85,6 +85,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // Disable scrolling
     window.addEventListener('scroll', () => { window.scrollTo(0, 0); });
+    window.addEventListener('touchmove', (e) => { e.preventDefault(); }, false);
+
   }
 
   reinitialize() {
@@ -163,7 +165,6 @@ export class AppComponent implements OnInit {
       opacity: 0,
       duration: 1
     };
-    // TODO Figure out how to call different durations in one call and combine these
     this.gsapService.to(elementId, moveUp);
     this.gsapService.to(elementId, fadeout);
   }
@@ -198,7 +199,6 @@ export class AppComponent implements OnInit {
       opacity: 0,
       duration: .5
     };
-    // TODO Figure out how to call different durations in one call and combine these
     this.gsapService.to(elementId, moveUp);
     this.gsapService.to(elementId, fadeout);
   }
@@ -208,7 +208,7 @@ export class AppComponent implements OnInit {
       y: 0,
       top: '150%',
       duration: 1,
-      opacity: 1
+      opacity: 0
     };
 
     const toPosition = {
