@@ -13,7 +13,7 @@ export interface QuizQuestion {
   options: QuizOptions[];
 }
 
-const DELAY_BETWEEN_RESULT = 3000;
+const DELAY_BETWEEN_RESULT = 1000;
 
 @Component({
   selector: 'app-root',
@@ -41,24 +41,7 @@ export class AppComponent implements OnInit {
         },
       ]
     },
-    {
-      questionLabel: 'What is Harry Potter\'s Birthday?',
-      answerKey: 'a',
-      options: [
-        {
-          optionKey: 'a',
-          optionLabel: 'July 31st '
-        },
-        {
-          optionKey: 'b',
-          optionLabel: 'June 31st'
-        },
-        {
-          optionKey: 'c',
-          optionLabel: 'October 31st'
-        }
-      ]
-    }
+
   ];
 
   constructor(private gsapService: GsapService) { }
@@ -69,6 +52,9 @@ export class AppComponent implements OnInit {
   }
 
   reinitialize() {
+    if (this.score === 0) {
+      this.dismissSnape();
+    }
     this.score = 0;
     this.exitTop('#ending-screen');
     this.bringToCenter('#starting-screen');
@@ -119,6 +105,9 @@ export class AppComponent implements OnInit {
         // Display end screen
         console.log('NO more questions');
         this.bringToCenter('#ending-screen');
+        if (this.score === 0) {
+          this.summonSnape();
+        }
       }
     }, DELAY_BETWEEN_RESULT);
   }
@@ -191,4 +180,32 @@ export class AppComponent implements OnInit {
 
     this.gsapService.fromTo(elementId, fromPosition, toPosition);
   }
+
+  summonSnape() {
+    const fromPosition = {
+      bottom: '-1000px',
+      duration: 3
+    };
+
+    const toPosition = {
+      bottom: '0px',
+      duration: 3
+    };
+    this.gsapService.fromTo('#snape', fromPosition, toPosition);
+  }
+
+  dismissSnape() {
+    const fromPosition = {
+      bottom: '0px',
+      duration: 3
+    };
+
+    const toPosition = {
+      bottom: '-1000px',
+      duration: 2
+    };
+
+    this.gsapService.fromTo('#snape', fromPosition, toPosition);
+  }
+
 }

@@ -1,7 +1,11 @@
-
 .app-container {
+    color: white;
+    font-size: 2em;
     overflow: hidden;
     max-height: 100vh;
+    background-image: url('../assets/images/dining-hall-2.png');
+    background-position: center;
+    background-size: cover;
 }
 
 .panel-container {
@@ -32,4 +36,14 @@ ul {
 
 .question-result {
     font-size: 2em;
+}
+
+#snape {
+    position: absolute;
+    bottom: -1000px;
+    right: 0px;
+
+    img {
+        height: 7em;
+    }
 }
