@@ -174,11 +174,19 @@ export class AppComponent implements OnInit {
   }
 
   bringToCenter(elementId: string) {
-    const moveToCenter = {
-      top: '40%',
-      duration: 1
+    const fromPosition = {
+      y: 0,
+      top: '150%',
+      duration: 1,
+      opacity: 1
     };
-    // TODO Figure out how to call different durations in one call and combine these
-    this.gsapService.to(elementId, moveToCenter);
+
+    const toPosition = {
+      top: '40%',
+      duration: 1,
+      opacity: 1
+    };
+
+    this.gsapService.fromTo(elementId, fromPosition, toPosition);
   }
 }
