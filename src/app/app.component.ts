@@ -13,7 +13,7 @@ export interface QuizQuestion {
   options: QuizOptions[];
 }
 
-const DELAY_BETWEEN_RESULT = 1000;
+const DELAY_BETWEEN_RESULT = 3000;
 
 @Component({
   selector: 'app-root',
@@ -41,6 +41,42 @@ export class AppComponent implements OnInit {
         },
       ]
     },
+    {
+      questionLabel: 'What is Harry Potter\'s Birthday?',
+      answerKey: 'a',
+      options: [
+        {
+          optionKey: 'a',
+          optionLabel: 'July 31st '
+        },
+        {
+          optionKey: 'b',
+          optionLabel: 'June 31st'
+        },
+        {
+          optionKey: 'c',
+          optionLabel: 'October 31st'
+        }
+      ]
+    },
+    {
+      questionLabel: 'What Hogwarts House is famous for its sharp, witty students?',
+      answerKey: 'c',
+      options: [
+        {
+          optionKey: 'a',
+          optionLabel: 'Hufflepuff'
+        },
+        {
+          optionKey: 'b',
+          optionLabel: 'Slytherin'
+        },
+        {
+          optionKey: 'c',
+          optionLabel: 'Ravenclaw'
+        }
+      ]
+    }
 
   ];
 
@@ -116,13 +152,14 @@ export class AppComponent implements OnInit {
     const moveUp = {
       y: -1000,
       rotate: 720,
-      duration: 1,
+      duration: 1.5,
       ease: 'power1.out',
+      opacity: 1
     };
 
     const fadeout = {
       opacity: 0,
-      duration: .5
+      duration: 1
     };
     // TODO Figure out how to call different durations in one call and combine these
     this.gsapService.to(elementId, moveUp);
@@ -132,11 +169,11 @@ export class AppComponent implements OnInit {
   rotateEnterFromBottom(elementId: string): void {
     const fromPosition = {
       y: 0,
-      top: '150%',
+      top: '110%',
       rotate: 0,
       duration: 1,
       ease: 'power1.out',
-      opacity: 1,
+      opacity: 0,
     };
 
     const toPosition = {
