@@ -11,4 +11,8 @@ export class GsapService {
     public to(element, vars: any) {
         gsap.to(element, vars);
     }
+
+    public fromTo(element, fromVars: any, toVars: any) {
+        gsap.fromTo(element, fromVars, toVars);
+    }
 }

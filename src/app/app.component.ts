@@ -13,7 +13,7 @@ export interface QuizQuestion {
   options: QuizOptions[];
 }
 
-const DELAY_BETWEEN_RESULT = 3000;
+const DELAY_BETWEEN_RESULT = 1000;
 
 @Component({
   selector: 'app-root',
@@ -61,16 +61,11 @@ export class AppComponent implements OnInit {
     }
   ];
 
-
   constructor(private gsapService: GsapService) { }
 
-  noScroll() {
-    window.scrollTo(0, 0);
-  }
-
   ngOnInit() {
-    window.addEventListener('scroll', this.noScroll);
-    console.log(this.gsapService);
+    // Disable scrolling
+    window.addEventListener('scroll', () => { window.scrollTo(0, 0); });
   }
 
   startQuiz() {
@@ -78,7 +73,7 @@ export class AppComponent implements OnInit {
     this.bringToCenter('#question-0');
   }
 
-  answerQuestion(selectedAnswer, question: QuizQuestion, index: number) {
+  answerQuestion(selectedAnswer: string, question: QuizQuestion, index: number): void {
     //  Dismiss answered question
     this.exitTop(`#question-${index}`);
 
@@ -90,7 +85,6 @@ export class AppComponent implements OnInit {
     if (selectedAnswer === question.answerKey) {
       console.log('CORRECT');
       result = '#correct-answer';
-
     } else {
       console.log('WRONGANSWER');
       result = '#incorrect-answer';
@@ -110,16 +104,14 @@ export class AppComponent implements OnInit {
 
       // If more questions remain
       if (this.questions.length > nextIndex) {
-        // Pull up next question
+        // Bring in next question
         console.log('Bring in question', `#question-${nextIndex}`);
         this.bringToCenter(`#question-${nextIndex}`);
-
       } else {
         // Display end screen
         console.log('NO more questions');
         this.bringToCenter('#ending-screen');
       }
-
     }, DELAY_BETWEEN_RESULT);
   }
 
